@@ -1,0 +1,51 @@
+<div class="header-container">
+    <img id="hamburger-image" src="assets/img/burger.png" alt="Burger image.">
+    <header>Eat-Da-Burger!</header>
+</div>
+
+<div class="row align-center" id="burger-container">
+  <div id="fresh" class="col-md-offset-1 col-md-4">
+    {{#each burgers}}
+      {{#unless this.devoured}}
+          <div class="burger-div">
+            <form class="inline-form" action="/{{this.id}}_method=PUT" method="POST">
+              <div class="form-group">
+                <label class="burger-label" for="burger-id">{{this.id}}. {{this.burger_name}}</label>
+                <input type="hidden" id="burger-id" name="id" value="{{this.id}}"/>
+                <button class="btn btn-success" type="submit">Devour it!</button>
+              </div>
+            </form>
+          </div>
+
+      {{/unless}}
+    {{/each}}
+  </div>
+
+  <div id="devoured"  class="col-md-offset-1 col-md-4">
+    {{#each burgers}}
+      {{#if this.devoured}}
+  
+          <div  class="burger-div">
+            {{this.id}}. {{this.burger_name}}
+          </div>
+
+      {{/if}}
+    {{/each}}
+  </div>
+</div>
+
+
+    <section id="new-burger">
+        <form class="create-update-form" action="/" method="POST">
+
+            <div class="form-group">
+                <textarea id="new-burger-text" rows="4" name="burger_name"></textarea>
+            </div>
+
+            <button type="submit" id="new-burger-submit">Submit</button>
+        </form>
+
+        <p>Enter a burger you want to eat. Click the "Submit" button.</p>
+
+    </section>
+</div>
